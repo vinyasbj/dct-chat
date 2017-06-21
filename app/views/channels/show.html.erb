@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @channel.name %>
+</p>
+
+<p>
+  <strong>Batch:</strong>
+  <%= @channel.batch_id %>
+</p>
+<h2>Chat Application</h2>
+
+ <ul id = "chat">
+ 	<%= render @channel.messages %>
+ </ul>
+ 
+ <div id= "chatbox">
+ 	<%=form_for Message.new ,remote: true do |f| %>	
+ 	<%= f.text_field :content %>
+ 	<%= f.hidden_field :channel_id , value: @channel.id %>
+ 	<%= f.submit "send" %>
+ 	<% end %>
+ </div>
+
+<%= subscribe_to "/@channel.name/" %>
+
+<%= link_to 'Edit', edit_channel_path(@channel) %> |
+<%= link_to 'Back', channels_path %>

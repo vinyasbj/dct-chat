@@ -1,0 +1,5 @@
+<% publish_to "/@message.channel.name/" do %>
+	$("#chat").append("<%= j render(@message) %>");
+<%#=binding.pry %>
+<% end %>
+$("#new_message")[0].reset();
