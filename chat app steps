@@ -1,0 +1,28 @@
+1. Each Batch has many students and for every new batch, we need to have a new channel 
+
+2. A student can be in multiple batches.
+
+3. 
+
+
+
+-------------------
+
+ADMIN Activity
+
+Add New Channel
+
+Batch_Name : wdJuly17 
+		
+	Add -Channel
+
+
+table - column - batch_name;
+
+-------------------------------------------------------
+1. rails g model Batch name:string
+2. rarake db:migrate 
+3. rails g scaffold Channel name:string batch_id:integer
+4. rake db:migrate
+5. rails g migration add_column_to_messages channel_id:integer
+6. rake db:migrate

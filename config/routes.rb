@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :students
+  resources :batches
+  devise_for :users
   resources :channels
   resources :messages
   # The priority is based upon order of creation: first created -> highest priority.

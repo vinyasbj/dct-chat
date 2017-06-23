@@ -1,6 +1,7 @@
 <h1>Editing Channel</h1>
 
 <%= render 'form' %>
-
-<%= link_to 'Show', @channel %> |
+<% if user_signed_in? && current_user.is_admin %>
+<%= link_to 'Show', @channel %>
+<% end -%> |
 <%= link_to 'Back', channels_path %>

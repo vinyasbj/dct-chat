@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @batch.name %><br>
+  <strong>Channel Name:</strong>
+  <% @batch.channels.each do |channel|  %>
+  <%=link_to channel.name , channel_path(channel.id)%>
+  <% end -%>
+</p>
+<% if user_signed_in? && current_user.is_admin %>
+	<%= link_to 'Edit', edit_batch_path(@batch) %> 
+<% end -%>|
+	<%= link_to 'Back', batches_path %>

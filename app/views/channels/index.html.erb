@@ -15,15 +15,19 @@
     <% @channels.each do |channel| %>
       <tr>
         <td><%= channel.name %></td>
-        <td><%= channel.batch_id %></td>
+        <td><%= channel.batch.name %></td>
         <td><%= link_to 'Show', channel %></td>
+        <% if user_signed_in? && current_user.is_admin %>
         <td><%= link_to 'Edit', edit_channel_path(channel) %></td>
-        <td><%= link_to 'Destroy', channel, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', channel, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <% end -%>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Channel', new_channel_path %>
+<% if user_signed_in? && current_user.is_admin %>
+  <%= link_to 'New Channel', new_channel_path %>
+<% end -%>

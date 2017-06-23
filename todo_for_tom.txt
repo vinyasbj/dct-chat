@@ -1,0 +1,2 @@
+write the after_create mtd post_creation_of_channel 
+processing for multi select array for student on channel new page 

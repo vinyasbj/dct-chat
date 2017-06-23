@@ -17,9 +17,14 @@
   </div>
   <div class="field">
     <%= f.label :batch_id %><br>
-    <%= f.number_field :batch_id %>
+    <%= f.collection_select :batch_id,Batch.all , :id,:name, promt: "Select a Batch" %>
+  </div>
+  <div class="field">
+    <%= f.label :student %><br>
+   <%= f.collection_select(:id, Student.all, :id, :name, {include_hidden: false, :prompt => "Please Select Students"}, {:multiple => true}) %>
   </div>
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+<%#= f.collection_select :receiver_id, receivers, :id, :email, {include_hidden: false, include_blank: true}, {class: 'form-control', multiple: true} %>
