@@ -5,7 +5,9 @@
   <%= @batch.name %><br>
   <strong>Channel Name:</strong>
   <% @batch.channels.each do |channel|  %>
-  <%=link_to channel.name , channel_path(channel.id)%>
+  <li>
+  	<%=link_to channel.name , channel_path(channel.id)%>
+  </li>
   <% end -%>
 </p>
 <% if user_signed_in? && current_user.is_admin %>

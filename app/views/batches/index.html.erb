@@ -1,8 +1,9 @@
+<div class="index">
 <p id="notice"><%= notice %></p>
 
 <h1>Listing Batches</h1>
 
-<table>
+<table class="table table-bordered">
   <thead>
     <tr>
       <th>Name</th>
@@ -27,6 +28,7 @@
 
 <br>
 <% if user_signed_in? && current_user.is_admin %>
-
-<%= link_to 'New Batch', new_batch_path %>
+<button type="button" class="btn btn-default">
+<%= link_to 'New Batch', new_batch_path %></button>
 <% end -%>
+</div>

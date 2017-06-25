@@ -21,10 +21,9 @@
   </div>
   <div class="field">
     <%= f.label :student %><br>
-   <%= f.collection_select(:id, Student.all, :id, :name, {include_hidden: false, :prompt => "Please Select Students"}, {:multiple => true}) %>
+   <%=f.collection_check_boxes(:student_ids,Student.all, :id,:name) %><br>
   </div>
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
-<%#= f.collection_select :receiver_id, receivers, :id, :email, {include_hidden: false, include_blank: true}, {class: 'form-control', multiple: true} %>

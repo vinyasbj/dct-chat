@@ -1,15 +1,15 @@
+<div class="index">
 <p id="notice"><%= notice %></p>
-
 <h1>Listing Channels</h1>
 
-<table>
+<table class="table table-bordered">
   <thead>
     <tr>
       <th>Name</th>
       <th>Batch</th>
       <th colspan="3"></th>
     </tr>
-  </thead>
+  </thead> 
 
   <tbody>
     <% @channels.each do |channel| %>
@@ -29,5 +29,7 @@
 
 <br>
 <% if user_signed_in? && current_user.is_admin %>
-  <%= link_to 'New Channel', new_channel_path %>
+<button type="button" class="btn btn-default">
+  <%= link_to 'New Channel', new_channel_path %></button>
 <% end -%>
+</div>

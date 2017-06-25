@@ -30,16 +30,16 @@ class ChannelsController < ApplicationController
   def create
     @channel = Channel.new(channel_params)
 
-    respond_to do |format|
+    # respond_to do |format|
       if @channel.save
 
-        format.html { redirect_to channels_path, notice: 'Channel was successfully created.' }
-        format.json { render :show, status: :created, location: @channel }
+         redirect_to channels_path, notice: 'Channel was successfully created.' 
+        # format.json { render :show, status: :created, location: @channel }
       else
         format.html { render :new }
         format.json { render json: @channel.errors, status: :unprocessable_entity }
       end
-    end
+    # end
   end
 
   # PATCH/PUT /channels/1
@@ -74,6 +74,6 @@ class ChannelsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def channel_params
-      params.require(:channel).permit(:name, :batch_id)
+      params.require(:channel).permit(:name, :batch_id, student_ids:[])
     end
 end

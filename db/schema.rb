@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170622121127) do
+ActiveRecord::Schema.define(version: 20170623092948) do
 
   create_table "batches", force: :cascade do |t|
     t.string   "name"
@@ -37,6 +37,14 @@ ActiveRecord::Schema.define(version: 20170622121127) do
     t.string   "name"
     t.string   "email"
     t.string   "mobile"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "subscriptions", force: :cascade do |t|
+    t.integer  "channel_id"
+    t.integer  "student_id"
+    t.boolean  "subscribed"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
