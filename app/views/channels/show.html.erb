@@ -10,23 +10,30 @@
   <strong>Batch:</strong>
   <%= @channel.batch_id %>
 </p>
+<p>
+  <strong>People on thi channel:</strong>
+  <% @channel.subscriptions.each do |subscription| %>
+
+    <%=subscription.student.user.name %>
+
+  <% end %>
+</p>
 <!-- <h2>Chat Application</h2> -->
 
  <ul id = "chat">
- 	<%= render @channel.messages %>
+ 	<%= render @channel.messages.reverse %>
  </ul>
- 
+
  <div id= "chatbox">
- 	<%=form_for Message.new ,remote: true do |f| %>	
- 	<%= f.text_field :content %>
+ 	<%=form_for Message.new ,remote: true do |f| %>
+ 	<%= f.text_field :content,autofocus: :true %>
  	<%= f.hidden_field :channel_id , value: @channel.id %>
- 	<%= f.submit "send" %>
+ 	<%= f.submit "send"    %>
  	<% end %>
  </div>
 
 <%= subscribe_to "/#{@channel.name}/new" %>
 <% if user_signed_in? && current_user.is_admin %>
 	<%= link_to 'Edit', edit_channel_path(@channel) %>
-	<% end -%> 
+	<% end -%>
 |<%= link_to 'Back', channels_path %>
-

@@ -4,7 +4,9 @@ class ChannelsController < ApplicationController
   # GET /channels
   # GET /channels.json
   def index
-    @channels = Channel.all
+    #subscriptions = Subscription.where('student_id=?',current_user.student_id)
+    @channels = Channel.where(id: (Subscription.where(student_id: current_user.student.id).pluck(:channel_id)))
+
   end
 
   # GET /channels/1
@@ -33,11 +35,12 @@ class ChannelsController < ApplicationController
     # respond_to do |format|
       if @channel.save
 
-         redirect_to channels_path, notice: 'Channel was successfully created.' 
+         redirect_to channels_path, notice: 'Channel was successfully created.'
         # format.json { render :show, status: :created, location: @channel }
       else
-        format.html { render :new }
-        format.json { render json: @channel.errors, status: :unprocessable_entity }
+        render :new
+        # format.html { render :new }
+        # format.json { render json: @channel.errors, status: :unprocessable_entity }
       end
     # end
   end

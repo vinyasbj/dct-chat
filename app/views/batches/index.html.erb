@@ -1,6 +1,6 @@
 <div class="index">
 <p id="notice"><%= notice %></p>
-
+<div class="container">
 <h1>Listing Batches</h1>
 
 <table class="table table-bordered">
@@ -25,7 +25,7 @@
     <% end %>
   </tbody>
 </table>
-
+</div>
 <br>
 <% if user_signed_in? && current_user.is_admin %>
 <button type="button" class="btn btn-default">

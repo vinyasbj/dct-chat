@@ -1,5 +1,6 @@
 class BatchesController < ApplicationController
   before_action :set_batch, only: [:show, :edit, :update, :destroy]
+  before_action :check_is_admin , except: [:index , :show]
 
   # GET /batches
   # GET /batches.json
