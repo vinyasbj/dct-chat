@@ -1,36 +1,21 @@
-<div class="index">
-<p id="notice"><%= notice %></p>
-<div class="container">
-<h1>Listing Channels</h1>
+<!-- <div class="container"> -->
 
-<table class="table table-bordered">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Batch</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <p id="notice"><%= notice %></p>
 
-  <tbody>
-    <% @channels.each do |channel| %>
-      <tr>
-        <td><%= channel.name %></td>
-        <td><%= channel.batch.name %></td>
-        <td><%= link_to 'Show', channel %></td>
-        <% if user_signed_in? && current_user.is_admin %>
-        <td><%= link_to 'Edit', edit_channel_path(channel) %></td>
-        <td><%= link_to 'Destroy', channel, method: :delete, data: { confirm: 'Are you sure?' } %>
-        <% end -%>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-</div>
-<br>
+  <div id="sidebar-wrapper">
+  <nav id="spy">
+    <ul class="sidebar-nav nav ">
+      <% @channels.each do |channel| %>
+          <li class="sidebar-brand">
+          <%=link_to channel.name ,  channel %>
+          <%if user_signed_in? && current_user.is_admin %>
+          <%= link_to 'Edit', edit_channel_path(channel) %>
+          <%= link_to 'Destroy', channel, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <% end -%>
+          </li>
+      <% end -%>
+    </ul>
+  </nav>
 <% if user_signed_in? && current_user.is_admin %>
-<button type="button" class="btn btn-default">
-  <%= link_to 'New Channel', new_channel_path %></button>
-<% end -%>
-</div>
+  <%= link_to 'New Channel', new_channel_path,class:"btn btn-default" %>
+<%end -%>

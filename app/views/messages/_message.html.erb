@@ -1,4 +1,15 @@
-<li>
- 	<span class="created_at"><%=message.created_at.strftime("%H:%M") %></span>
- 	<b><%= message.user.name%>:</b> <%= message.content %>
-</li>
+ 	
+ 		
+
+          <div class="media">
+                                    <div class="pull-left" >
+                                      
+ 	<%= message.user.name%> :
+                                    </div>
+                                    <div class="media-body">
+                                      <p><%= message.content %></p>
+
+                                       <small class="text-muted"><%=message.created_at.strftime("%H:%M") %></small>
+                                       
+                                    </div>
+                                </div>

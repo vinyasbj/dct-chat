@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  get 'subscriptions/recover_soft_deleted_records'
+
+  get 'subscriptions/destroy'
+
+  resources :subscriptions
   resources :students
   resources :batches
   devise_for :users
