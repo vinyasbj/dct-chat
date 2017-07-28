@@ -9,6 +9,7 @@
       <th>Name</th>
       <th>Email</th>
       <th>Mobile</th>
+
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -17,11 +18,14 @@
     <% @students.each do |student| %>
       <tr>
         <td><%= student.name %></td>
-        <td><%= student.user.email %></td>
+        <td><%= student.user.try(:email) %></td>
         <td><%= student.mobile %></td>
-        <td><%= link_to 'Show', student %></td>
-        <td><%= link_to 'Edit', edit_student_path(student) %></td>
-        <td><%= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if current_user.is_admin %>
+          <td><%= link_to 'Show', student %></td>
+          <td><%= link_to 'Edit', edit_student_path(student) %></td>
+          <td><%= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>

@@ -66,6 +66,9 @@ GEM
       responders
       warden (~> 1.2.3)
     devise-bootstrap-views (0.0.11)
+    devise_invitable (1.7.2)
+      actionmailer (>= 4.1.0)
+      devise (>= 4.0.0)
     em-http-request (1.1.5)
       addressable (>= 2.3.4)
       cookiejar (!= 0.3.1)
@@ -208,6 +211,7 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   devise
   devise-bootstrap-views
+  devise_invitable
   jbuilder (~> 2.0)
   jquery-rails
   private_pub
@@ -223,4 +227,4 @@ DEPENDENCIES
   web-console (~> 2.0)
 
 BUNDLED WITH
-   1.15.1
+   1.15.3

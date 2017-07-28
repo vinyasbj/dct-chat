@@ -11,6 +11,7 @@
  * file per style scope.
  *
  *= require_tree .
+ 
  *= require_self
  *= require devise_bootstrap_views
 
@@ -25,7 +26,7 @@
     height:300px;
     width:900px;
     border:1px solid #ACD8F0;
-    overflow:auto; 
+    overflow:auto;
 
   }*/
 #chatbox{
@@ -39,31 +40,23 @@
 ..blue { background: blue }
 .grey { background: grey }
 
-/*
+
 .list-group-item {
     border: none;
     border-top: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
-    
+
 }
 .list-group-item:first-child {
     border-top: none;
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
-}*/
+}
 
 
-.current-chat { 
-    /*text-align:left;
-    margin:30px;
-    margin-bottom:25px;
-    padding:10px;
-    background:#fff;
-    height:300px;
-    width:900px;
-    border:1px solid #ACD8F0;
-    overflow:auto;*/ 
-    height: 100vh; 
+.current-chat {
+
+    height: 90vh;
     border: 1px solid #ddd;
 }
 
@@ -83,20 +76,22 @@
     height: 85vh;
     padding:10px;
     background:#fff;
-    height:300px;
+    height:200px;
+    margin: auto;
     width:1011px;
     border:1px solid #ACD8F0;
-    overflow:auto; 
-    height: 100vh; 
+    overflow:auto;
+    height: 100vh;
     border: 1px solid #ddd;
 }
 
-/*.current-chat-footer {
+.current-chat-footer {
     position: absolute;
-    bottom: 0;
-    
+    bottom-margin : 0;
+		width: 1011px;  
+
 }
-*/
+
 #wrapper {
   position: fixed;
   padding-left: 250px;

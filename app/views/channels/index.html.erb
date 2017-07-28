@@ -1,21 +1,21 @@
 <!-- <div class="container"> -->
 
-  <p id="notice"><%= notice %></p>
+<p id="notice"><%= notice %></p>
 
-  <div id="sidebar-wrapper">
+<div id="sidebar-wrapper">
   <nav id="spy">
     <ul class="sidebar-nav nav ">
       <% @channels.each do |channel| %>
-          <li class="sidebar-brand">
-          <%=link_to channel.name ,  channel %>
-          <%if user_signed_in? && current_user.is_admin %>
-          <%= link_to 'Edit', edit_channel_path(channel) %>
-          <%= link_to 'Destroy', channel, method: :delete, data: { confirm: 'Are you sure?' } %>
-          <% end -%>
-          </li>
+      <li class="sidebar-brand">
+        <%=link_to channel.name ,  channel %>
+        <%if user_signed_in? && current_user.is_admin %>
+        <%= link_to 'Edit', edit_channel_path(channel) %>
+        <%= link_to 'Destroy', channel, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <% end -%>
+      </li>
       <% end -%>
     </ul>
   </nav>
-<% if user_signed_in? && current_user.is_admin %>
+  <% if user_signed_in? && current_user.is_admin %>
   <%= link_to 'New Channel', new_channel_path,class:"btn btn-default" %>
-<%end -%>
+  <%end -%>

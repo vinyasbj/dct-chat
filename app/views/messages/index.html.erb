@@ -5,10 +5,10 @@
  </ul>
  
  <div id= "chatbox">
- 	 <%=form_for Message.new ,remote: true do |f| %>	
+ 	<%=form_for Message.new ,remote: true do |f| %>	
  	<%= f.text_field :content %>
  	<%= f.submit "send" %>
  <% end -%>
  </div>
 
-<%= subscribe_to "/vinyas/new" %>
+<%=subscribe_to "/#{@message.channel.name}/new" %>

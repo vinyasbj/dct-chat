@@ -17,7 +17,7 @@
                   <%= f.collection_check_boxes :student_ids,@channel.subscriptions,:id,:student_name do |f| %>
                       <%= link_to 'Unsubscribe', f.object, method: :delete, data: { confirm: 'Are you sure?' } %>
                       <%= f.check_box %>
-        
+
                       <%= f.label %><br/>
                     <% end %>
                 <% end %>
@@ -39,13 +39,14 @@
         <div class="col-md-12">
           <div class="list-group-item">
             <strong>Soft deleted People of the Batch for this Channel:</strong>
-              <%= form_for(@channel) do |f| %>
-                <%= f.collection_check_boxes :student_ids, @channel.unsubscribed_students, :id, :name do |f| %>
-                  <%= link_to 'subscribe' %>
-                  <%= f.check_box %>
-                  <%= f.label %><br/>
-                <%end %>
-              <%end %>
+            <%= form_for(@channel) do |f| %>
+              <%= f.collection_check_boxes :student_ids, @channel.unsubscribed_students, :id, :name do |f| %>
+                 <%# binding.pry %>
+                <%= link_to 'Re-Subscribe',subscriptions_recover_soft_deleted_records_path(student_id: f.object.id, channel_id: @channel.id) %>
+                <%= f.check_box %>
+                <%= f.label %><br/>
+              <% end %>
+            <% end %>
           </div>
         </div>
       </div>
@@ -67,11 +68,9 @@
           <div class="input-group">
             <%=form_for Message.new ,remote: true do |f| %>
               <%= f.hidden_field :channel_id , value: @channel.id %>
-              <%= f.text_field :content, class:"form-control send-form" %>
-                <span class="input-group-btn">
-                  <%= f.submit "send", class:"btn btn-default send-chart" %>
-                  <!--   <button class="btn btn-default" type="button">Send</button> -->
-                </span>
+              <%#= f.text_field :content, class:"form-control send-form textEditor", style: "width:900px;" %>
+              <%= f.text_area :content, class: "form-control send-form textEditor", style: "width:1000px;" %>
+              <%= f.submit "send", class:"btn btn-default send-chart" %>
              <% end %>
            </div>
         </div>

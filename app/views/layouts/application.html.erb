@@ -1,90 +1,101 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Chat</title>
-  <link rel="icon" href="https://image.freepik.com/free-icon/facebook-chat-boxes-silhouette_318-37733.jpg">
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
+  <head>
+    <title>Chat</title>
+    <link rel="icon" href="https://image.freepik.com/free-icon/facebook-chat-boxes-silhouette_318-37733.jpg">
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.6.2/ckeditor.js"></script>
+    <script>
+      $(document).ready(function(){
+        CKEDITOR.replaceAll( 'textEditor' );
+      });
+    </script>
 
-  <style>
-  .navbar {
-    margin-bottom: 0;
-    background-color: #2d2d30;
-    border: 0;
-    font-size: 11px !important;
-    letter-spacing: 4px;
-    opacity:0.9;
-  }
-  .navbar li a, .navbar .navbar-brand {
-      color: #d5d5d5 !important;
-  }
+    <style>
+      .navbar {
+        margin-bottom: 0;
+        background-color: #2d2d30;
+        border: 0;
+        font-size: 11px !important;
+        letter-spacing: 4px;
+        opacity: 0.9;
+      }
+      .navbar .navbar-brand,
+      .navbar li a {
+        color: #d5d5d5 !important;
+      }
 
-  /* On hover, the links will turn white */
-  .navbar-nav li a:hover {
-      color: #fff !important;
-  }
+      /* On hover, the links will turn white */
+      .navbar-nav li a:hover {
+        color: #fff !important;
+      }
 
-  /* The active link */
-  .navbar-nav li.active a {
-      color: #fff !important;
-      background-color:#29292c !important;
-  }
+      /* The active link */
+      .navbar-nav li.active a {
+        color: #fff !important;
+        background-color: #29292c !important;
+      }
 
-  /* Remove border color from the collapsible button */
-  .navbar-default .navbar-toggle {
-      border-color: transparent;
-  }
+      /* Remove border color from the collapsible button */
+      .navbar-default .navbar-toggle {
+        border-color: transparent;
+      }
 
+    </style>
+  </head>
+  <body>
 
-  </style>
-</head>
-<body>
-
-<nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a href="http://localhost:3000/channels" class="navbar-left"><img style=" width: 40px;
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a  class="navbar-left"><img style=" width: 40px;
     height: 40px; padding-top: 7px; " src="https://image.freepik.com/free-icon/facebook-chat-boxes-silhouette_318-37733.jpg"></a>
-      </div >
-       <% if user_signed_in? %>
+        </div >
+        <% if user_signed_in? %>
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav navbar-right">
-            <li><%#=link_to "Batches" , batches_path %></li>
+            <% if current_user.is_admin %>
+              <li><%=link_to "Batches" , batches_path %></li>
+            <% end %>
             <li><%=link_to "Channels" , channels_path%></li>
             <li><%=link_to "Students" , students_path%></li>
             <li><%= link_to "Account Setting" , edit_user_registration_path %></li>
             <li><%= link_to "Logout" , destroy_user_session_path, method: :delete %></li>
           </ul>
-      <% else  %>
-            <ul class="nav navbar-nav navbar-right">
-             <li><%=link_to "Login" , new_user_session_path%></li>
-             <li><%= link_to "Register" , new_user_registration_path %></li>
-            </ul>
+        <% else  %>
+          <ul class="nav navbar-nav navbar-right">
+            <li><%=link_to "Login" , new_user_session_path%></li>
+            <li><%= link_to "Register" , new_user_registration_path %></li>
+          </ul>
         </div>
         <% end -%>
+      </div>
+    </nav>
+    <% if user_signed_in? %>
+    <div class="welcome">
+        Welcome! <%= current_user.name %>
+      <% if current_user.is_admin %>
+        <%=link_to "Account Management",accountmanagement_index_path ,class:"btn btn-default" %>
+      <% end %>
+    </div>
+
+    <% end -%>
+
   </div>
-</nav>
-<% if user_signed_in? %>
-  <div class="welcome">
-       Welcome <%= current_user.name %>
-  </div>
-
-<% end -%>
-
-</div>
-    <%= yield %>
-        <%= notice %>
-        <%= alert %>
-
+  <%= yield %>
+  <%= notice %>
+  <%= alert %>
 
 </body>
 </html>
