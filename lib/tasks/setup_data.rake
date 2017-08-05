@@ -22,6 +22,5 @@ task :setup_data => :environment do
 	subscription = Subscription.new
 	subscription.channel_id = Channel.find_by(name: "Public Channel").id
 	subscription.student_id = student.id
-	subscription.save
-	
+	subscription.save	
 end
