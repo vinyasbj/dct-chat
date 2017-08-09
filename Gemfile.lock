@@ -124,6 +124,8 @@ GEM
       method_source (~> 0.8.1)
       slop (~> 3.4)
     public_suffix (2.0.5)
+    rabl (0.13.1)
+      activesupport (>= 2.3.14)
     rack (1.6.8)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -216,6 +218,7 @@ DEPENDENCIES
   jquery-rails
   private_pub
   pry
+  rabl
   rails (= 4.2.6)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)

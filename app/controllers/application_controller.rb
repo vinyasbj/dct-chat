@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   
   protect_from_forgery with: :exception
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
   # before_action :configure_permitted_parametes, if: :devise_controller?
   protect_from_forgery with: :exception
   def check_is_admin

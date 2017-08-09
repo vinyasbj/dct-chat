@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
- 
+  
+  get 'students/filter' 
   get 'subscriptions/recover_soft_deleted_records'
-
+  get 'channels/find_batch_students'
+  get 'batches/find_batch_students'
   get 'subscriptions/destroy'
 
   resources :subscriptions

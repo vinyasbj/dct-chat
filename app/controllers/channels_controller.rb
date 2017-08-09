@@ -1,6 +1,6 @@
 class ChannelsController < ApplicationController
   before_action :set_channel, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!  
   # GET /channels
   # GET /channels.json
   def index
@@ -68,10 +68,8 @@ class ChannelsController < ApplicationController
       format.html { redirect_to channels_url, notice: 'Channel was successfully destroyed.' }
       format.json { head :no_content }
     end
-
-
-
   end
+  
 
   private
     # Use callbacks to share common setup or constraints between actions.

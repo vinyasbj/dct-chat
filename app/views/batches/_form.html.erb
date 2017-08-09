@@ -24,8 +24,7 @@
     <%=f.collection_check_boxes(:student_ids,Student.all, :id,:name) %><br>
   </div>
 
-  <%#= f.submit  %>
-  <button type="submit" class="btn btn-default">Submit</button>
-
+  <%= f.submit  %>
+  
   <% end %>
 </div>

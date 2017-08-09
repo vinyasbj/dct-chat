@@ -29,11 +29,13 @@
               <%= form_for(@channel) do |f| %>
               <%#binding.pry %>
                 <%=f.collection_check_boxes :student_ids, @channel.remaining_students,:id, :name do |f| %>
-                  <%= link_to 'subscribe'  %>
-                    <%= f.check_box %>
-                    <%= f.label %><br/>
-                <% end %>
-              <% end -%>
+                  <% if current_user.is_admin %>
+                    <%= link_to 'subscribe'  %>
+                      <%= f.check_box %>
+                      <%= f.label %><br/>
+                  <% end %>
+                <% end -%>
+             <% end %>
           </div>
         </div>
         <div class="col-md-12">
@@ -57,7 +59,7 @@
           <ul class="media-list">
             <li class="media">
               <div class="media-body">
-                <%= render @channel.messages %>
+                <%= render @channel.messages.reverse %>
               </div>
             </li>
           </ul>
@@ -69,7 +71,7 @@
             <%=form_for Message.new ,remote: true do |f| %>
               <%= f.hidden_field :channel_id , value: @channel.id %>
               <%#= f.text_field :content, class:"form-control send-form textEditor", style: "width:900px;" %>
-              <%= f.text_area :content, class: "form-control send-form textEditor", style: "width:1000px;" %>
+              <%= f.text_area :content, class: "form-control send-form textEditor", rows: 1000 ,cols: 1000  %>
               <%= f.submit "send", class:"btn btn-default send-chart" %>
              <% end %>
            </div>
@@ -81,6 +83,7 @@
 
 
 <%= subscribe_to "/#{@channel.name}/new" %>
+
 <% if user_signed_in? && current_user.is_admin %>
   <%= link_to 'Edit', edit_channel_path(@channel),class:"btn btn-default " %>
 <%end -%>

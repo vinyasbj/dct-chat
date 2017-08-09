@@ -1,9 +1,9 @@
 <div class="media">
     <div class="pull-left" >
-        <%= message.user.name%> :
+        <%=message.user.name%> :
     </div>
     <div class="media-body">
-		    <p><%= message.content.html_safe %></p>
+		    <p><%=message.content.html_safe %></p>
 			<small class="text-muted"><%=message.created_at.strftime("%H:%M") %></small>  
     </div>
 </div>

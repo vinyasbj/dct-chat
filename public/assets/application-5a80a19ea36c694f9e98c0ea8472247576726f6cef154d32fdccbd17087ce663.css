@@ -1,0 +1,140 @@
+.index{
+	padding-top: 70px;
+}
+.welcome{
+	padding-top: 60px;
+}
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+
+ 
+
+
+
+ */
+
+/*#chat {
+    text-align:left;
+    margin:30px;
+    margin-bottom:25px;
+    padding:10px;
+    background:#fff;
+    height:300px;
+    width:900px;
+    border:1px solid #ACD8F0;
+    overflow:auto;
+
+  }*/
+
+#chatbox{
+	margin:30px;
+	height:20px;
+	width:470px;
+	 background:#fff;
+	 border:1px ;
+    /*overflow:auto*/;
+}
+..blue { background: blue }
+.grey { background: grey }
+
+
+.list-group-item {
+    border: none;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+
+}
+.list-group-item:first-child {
+    border-top: none;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+}
+
+
+.current-chat {
+
+    height: 90vh;
+    border: 1px solid #ddd;
+}
+
+.chat-toolbar-row {
+
+    background-color: #f5f5f5;
+}
+
+.chat-toolbar {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.current-chat-area {
+    padding-top: 10px;
+    overflow: auto;
+    height: 85vh;
+    padding:10px;
+    background:#fff;
+    height:200px;
+    margin: auto;
+    width:1011px;
+    border:1px solid #ACD8F0;
+    overflow:auto;
+    height: 100vh;
+    border: 1px solid #ddd;
+}
+
+.current-chat-footer {
+    position: absolute;
+    bottom-margin : 0;
+		width: 1011px;  
+
+}
+
+#wrapper {
+  position: fixed;
+  padding-left: 250px;
+  transition: all 0.4s ease 0s;
+}
+
+#sidebar-wrapper {
+  position: fixed;
+  margin-left: -250px;
+  left: 250px;
+  width: 250px;
+  background: #000;
+  position: fixed;
+  height: 100%;
+  overflow-y: auto;
+  z-index: 1000;
+  transition: all 0.4s ease 0s;
+}
+
+#wrapper.active {
+  padding-left: 0;
+}
+
+#wrapper.active #sidebar-wrapper {
+  left: 0;
+}
+/* line 1, /home/vinyas/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/devise-bootstrap-views-0.0.11/app/assets/stylesheets/devise_bootstrap_views.scss */
+.float-none {
+  float: none;
+}
+
+/* line 5, /home/vinyas/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/devise-bootstrap-views-0.0.11/app/assets/stylesheets/devise_bootstrap_views.scss */
+.panel-heading {
+  padding: 15px;
+}
+/* line 7, /home/vinyas/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/devise-bootstrap-views-0.0.11/app/assets/stylesheets/devise_bootstrap_views.scss */
+.panel-heading h4 {
+  margin: 0px;
+}

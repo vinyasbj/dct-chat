@@ -31,7 +31,7 @@ gem 'devise-bootstrap-views'
 gem 'devise_invitable'
 # Use Unicorn as the app server
 # gem 'unicorn'
-
+gem 'rabl'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
