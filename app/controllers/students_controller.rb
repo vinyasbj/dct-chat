@@ -1,6 +1,6 @@
 class StudentsController < ApplicationController
   before_action :set_student, only: [:show, :edit, :update, :destroy]
-  before_action :check_is_admin , except: [:filter, :index , :show]
+  before_action :check_is_admin , except: [:filter, :index ,:show]
 
   # GET /students
   # GET /students.json
@@ -62,11 +62,7 @@ class StudentsController < ApplicationController
     end
   end
 
-  def filter
 
-    @students = BatchStudent.where("batch_id = ?" , params[:batch_id])
-    
-  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

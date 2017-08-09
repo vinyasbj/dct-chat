@@ -1,6 +1,6 @@
 class BatchesController < ApplicationController
   before_action :set_batch, only: [:show, :edit, :update, :destroy]
-  before_action :check_is_admin , except: [:index , :show]
+  before_action :check_is_admin , except: [:find_batch_students,:index , :show]
 
   # GET /batches
   # GET /batches.json
@@ -61,6 +61,17 @@ class BatchesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def find_batch_students
+
+    @batch_students = BatchStudent.where("batch_id = ?", params[:batch_id])
+    
+  end
+
+
+
+
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

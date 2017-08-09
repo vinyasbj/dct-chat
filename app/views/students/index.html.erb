@@ -20,11 +20,11 @@
         <td><%= student.name %></td>
         <td><%= student.user.try(:email) %></td>
         <td><%= student.mobile %></td>
-        <% if current_user.is_admin %>
+        <%# if current_user.is_admin %>
           <td><%= link_to 'Show', student %></td>
           <td><%= link_to 'Edit', edit_student_path(student) %></td>
           <td><%= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' } %>
-        <% end %>
+        <%# end %>
         </td>
       </tr>
     <% end %>

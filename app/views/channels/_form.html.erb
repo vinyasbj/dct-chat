@@ -41,16 +41,14 @@
     // studentHandle.innerHTML = "";
     var output = "";
     var xhr = new XMLHttpRequest();
-    xhr.open('GET','/students/filter?batch_id=' + batchHandle.value);
+    xhr.open('GET','/batches/find_batch_students?batch_id=' + batchHandle.value);
     // console.log(batchHandle.value);
     xhr.onreadystatechange = function(){
       if(xhr.readyState == 4 && xhr.status == 200){
         var response = JSON.parse(xhr.responseText);
         response.forEach(function(student){
           // console.log(student);
-          //alert(batchHandle.value);
-          alert(Object.keys(student));
-          output += "<option value="+ student.id + ">" + student.email + "</option>";
+          output += "<option value=" + student.id + ">" + student.email + "</option>";
         });
         studentHandle.innerHTML = output;
       }

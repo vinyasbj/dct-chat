@@ -1,0 +1,2 @@
+collection @batch_students
+attributes :student_id
