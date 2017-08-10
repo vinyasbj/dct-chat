@@ -45,7 +45,9 @@
       .navbar-default .navbar-toggle {
         border-color: transparent;
       }
-
+      body{
+        background: #93B874;
+      }
     </style>
   </head>
   <body>
@@ -92,9 +94,11 @@
     <% end -%>
 
   </div>
+  <div id="background">  
   <%= yield %>
   <%= notice %>
   <%= alert %>
+  </div>
 
 </body>
 </html>

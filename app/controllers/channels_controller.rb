@@ -7,7 +7,7 @@ class ChannelsController < ApplicationController
     @channels = Channel.where(id: (Subscription.where(student_id: current_user.student.id).pluck(:channel_id)))
 
   end
-
+ 
   # GET /channels/1
   # GET /channels/1.json
   def show

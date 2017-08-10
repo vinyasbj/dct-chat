@@ -63,9 +63,7 @@ class BatchesController < ApplicationController
   end
 
   def find_batch_students
-
-    @batch_students = BatchStudent.where("batch_id = ?", params[:batch_id])
-    
+    @batch_students = Student.where(id: (BatchStudent.where("batch_id = ?", params[:batch_id]).pluck(:student_id)))
   end
 
 
@@ -81,6 +79,6 @@ class BatchesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def batch_params
-      params.require(:batch).permit(:name, student_ids: [])
+      params.require(:batch).permit(:name, :channel_id,student_ids: [])
     end
 end

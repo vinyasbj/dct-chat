@@ -19,14 +19,17 @@
     <%= f.label :batch_id %><br>
     <%= f.collection_select :batch_id,Batch.all , :id,:name, promt: "Select a Batch" %>
   </div>
-  <div class="field">
-    <%= f.label :student%><br>
-    <%= f.collection_select :student_ids,Student.all , :id,:name, promt: "Select a student" %>
-  </div>
+  <!-- <div class="field">
+    <%#= f.label :student%><br>
+    <%#= f.collection_select :student_ids,Student.all , :id,:name, promt: "Select a student" %>
+  </div> -->
   <div class="field">
     <%= f.label :student %><br>
    <%=f.collection_check_boxes(:student_ids,Student.all, :id,:name) %><br>
-  </div>  
+  </div> 
+  <div id="checkbox" >
+    
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
@@ -36,10 +39,14 @@
 
   var batchHandle = document.getElementById('channel_batch_id');
   var studentHandle = document.getElementById('channel_student_ids');
-
+  var checkboxHandle = document.getElementById('checkbox');
   batchHandle.onchange = function(){
     // studentHandle.innerHTML = "";
     var output = "";
+    var output1 = "";
+    var name = "";
+    var append1 = "" ;
+    var append2 = "";
     var xhr = new XMLHttpRequest();
     xhr.open('GET','/batches/find_batch_students?batch_id=' + batchHandle.value);
     // console.log(batchHandle.value);
@@ -47,14 +54,34 @@
       if(xhr.readyState == 4 && xhr.status == 200){
         var response = JSON.parse(xhr.responseText);
         response.forEach(function(student){
-          // console.log(student);
-          output += "<option value=" + student.id + ">" + student.email + "</option>";
+          // var node = document.createElement("input");
+          // node.type = "checkbox";
+          // node.value = student.id;
+          // node.id = "channel_student_ids_" + student.id;
+          // var label = document.createElement("label");
+          // label.for = "channel_student_ids_" + student.id;
+          // var text = document.createTextNode(student.name);
+          // label.appendChild(text);
+          // console.log(student.id);
+          //var append = "";
+          output += "<option value=" + student.id + ">" + student.name + "</option>";
+          // name += "<label for=channel_student_ids_"+ student.id + ">" + student.name + "</label>";
+          output1 += "<input type=checkbox value=" + student.id + " id=channel_student_ids_" +student.id + " name=channel[student_ids]"+"["+"]" + ">" + "<label for=channel_student_ids_"+ student.id + ">" + student.name + "</label>";
+          // checkboxHandle.appendChild(label);
+          //console.log(output1);
+          // append += output1 ;
+          // append2 += name;
+          // append1 += append;
         });
-        studentHandle.innerHTML = output;
+        checkboxHandle.innerHTML = output1 ;
+        // studentHandle.innerHTML = output ;
+
       }
     }
     xhr.send();
   };
+  // <label for="channel_student_ids_2">Nisarga</label>
+  // <input type="checkbox" value="1" name="channel[student_ids][]" id="channel_student_ids_1">
 // <input type="checkbox" value= "student.id" name="student.name" id="student.id">
 /*xhr.onreadystatechange = function(){
 <script type="text/javascript">
