@@ -11,6 +11,7 @@
  * file per style scope.
  *
  *= require_tree .
+ 
  *= require_self
  *= require devise_bootstrap_views
 
@@ -25,7 +26,11 @@
     height:300px;
     width:900px;
     border:1px solid #ACD8F0;
+<<<<<<< HEAD
     overflow:auto; 
+=======
+    overflow:auto;
+>>>>>>> 9b63936d9c7bcf93be0d88f9a7820fa5c2e9592e
 
   }*/
 #chatbox{
@@ -40,16 +45,24 @@
 .grey { background: grey }
 
 /*
+=======
+
+>>>>>>> 9b63936d9c7bcf93be0d88f9a7820fa5c2e9592e
 .list-group-item {
     border: none;
     border-top: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 9b63936d9c7bcf93be0d88f9a7820fa5c2e9592e
 }
 .list-group-item:first-child {
     border-top: none;
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
+<<<<<<< HEAD
 }*/
 
 
@@ -64,6 +77,14 @@
     border:1px solid #ACD8F0;
     overflow:auto;*/ 
     height: 100vh; 
+
+}
+
+
+.current-chat {
+
+    height: 90vh;
+
     border: 1px solid #ddd;
 }
 
@@ -83,6 +104,7 @@
     height: 85vh;
     padding:10px;
     background:#fff;
+<<<<<<< HEAD
     height:300px;
     width:1011px;
     border:1px solid #ACD8F0;
@@ -97,6 +119,24 @@
     
 }
 */
+
+    height:200px;
+    margin: auto;
+    width:1011px;
+    border:1px solid #ACD8F0;
+    overflow:auto;
+    height: 100vh;
+    border: 1px solid #ddd;
+}
+
+.current-chat-footer {
+    position: absolute;
+    bottom-margin : 0;
+		width: 1011px;  
+
+}
+
+
 #wrapper {
   position: fixed;
   padding-left: 250px;

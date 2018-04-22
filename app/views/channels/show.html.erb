@@ -5,7 +5,15 @@
         <div class="col-md-12">
           <div class="list-group-item open-request">
               <strong><p>Name:<%= @channel.name %></p></strong>
+
               <p>Batch: <%= @channel.batch_id %></p>
+
+              <p>Batch: <%= @channel.batch_id %>
+              </p><%=@channel.batch.students.length %>
+              <% @channel.batch.students.each do |student| %>
+                <%=student.name %>
+              <% end %>
+
           </div>
           <div class="list-group-item chat-request">
              <strong>People on the channel:</strong>
@@ -13,6 +21,7 @@
                   <%= f.collection_check_boxes :student_ids,@channel.subscriptions,:id,:student_name do |f| %>
                       <%= link_to 'Unsubscribe', f.object, method: :delete, data: { confirm: 'Are you sure?' } %>
                       <%= f.check_box %>
+
                       <%  %>
                       <%= f.label %><br/>
                     <% end %>
@@ -80,7 +89,72 @@
 </div>
 
 
+                      <%= f.label %><br/>
+                    <% end %>
+                <% end %>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="list-group-item">
+            <strong>Remaining People of the Batch for this Channel:</strong><br>
+              <%= form_for(@channel) do |f| %>
+              <%#binding.pry %>
+                <%=f.collection_check_boxes :student_ids, @channel.remaining_students,:id, :name do |f| %>
+                  <% if current_user.is_admin %>
+                    <%= link_to 'subscribe'  %>
+                      <%= f.check_box %>
+                      <%= f.label %><br/>
+                  <% end %>
+                <% end -%>
+             <% end %>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="list-group-item">
+            <strong>Soft deleted People of the Batch for this Channel:</strong>
+            <%= form_for(@channel) do |f| %>
+              <%= f.collection_check_boxes :student_ids, @channel.unsubscribed_students, :id, :name do |f| %>
+                 <%# binding.pry %>
+                <%= link_to 'Re-Subscribe',subscriptions_recover_soft_deleted_records_path(student_id: f.object.id, channel_id: @channel.id) %>
+                <%= f.check_box %>
+                <%= f.label %><br/>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-9 current-chat">
+      <div class="row current-chat-area">
+        <div class="col-md-12">
+          <ul class="media-list">
+            <li class="media">
+              <div class="media-body">
+                <%= render @channel.messages.reverse %>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="row current-chat-footer">
+        <div class="panel-footer">
+          <div class="input-group">
+            <%=form_for Message.new ,remote: true do |f| %>
+              <%= f.hidden_field :channel_id , value: @channel.id %>
+              <%#= f.text_field :content, class:"form-control send-form textEditor", style: "width:900px;" %>
+              <%= f.text_area :content, class: "form-control send-form textEditor", rows: 1000 ,cols: 1000  %>
+              <%= f.submit "send", class:"btn btn-default send-chart" %>
+             <% end %>
+           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <%= subscribe_to "/#{@channel.name}/new" %>
+
 <% if user_signed_in? && current_user.is_admin %>
   <%= link_to 'Edit', edit_channel_path(@channel),class:"btn btn-default " %>
 <%end -%>

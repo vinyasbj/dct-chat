@@ -17,7 +17,6 @@
         <td><%= batch.name %></td>
         <td><%= link_to 'Show', batch %></td>
         <% if user_signed_in? && current_user.is_admin %>
-
         <td><%= link_to 'Edit', edit_batch_path(batch) %></td>
         <td><%= link_to 'Destroy', batch, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end -%>

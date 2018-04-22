@@ -1,6 +1,6 @@
 class BatchesController < ApplicationController
   before_action :set_batch, only: [:show, :edit, :update, :destroy]
-  before_action :check_is_admin , except: [:index , :show]
+  before_action :check_is_admin , except: [:find_batch_students,:index , :show]
 
   # GET /batches
   # GET /batches.json
@@ -11,6 +11,7 @@ class BatchesController < ApplicationController
   # GET /batches/1
   # GET /batches/1.json
   def show
+    @batch = Batch.find(params[:id])
   end
 
   # GET /batches/new
@@ -26,7 +27,6 @@ class BatchesController < ApplicationController
   # POST /batches.json
   def create
     @batch = Batch.new(batch_params)
-
     respond_to do |format|
       if @batch.save
         format.html { redirect_to batches_path, notice: 'Batch was successfully created.' }
@@ -62,6 +62,15 @@ class BatchesController < ApplicationController
     end
   end
 
+  def find_batch_students
+    @batch_students = Student.where(id: (BatchStudent.where("batch_id = ?", params[:batch_id]).pluck(:student_id)))
+  end
+
+
+
+
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_batch
@@ -70,6 +79,6 @@ class BatchesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def batch_params
-      params.require(:batch).permit(:name)
+      params.require(:batch).permit(:name, :channel_id,student_ids: [])
     end
 end

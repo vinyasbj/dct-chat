@@ -1,4 +1,4 @@
-<% publish_to "/#{@message.channel.name}/new" do %>
+<%publish_to "/#{@message.channel.name}/new" do %>
 	$("#chat").prepend("<%= j render(@message) %>");
 <% end %>
 $("#new_message")[0].reset();

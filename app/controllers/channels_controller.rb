@@ -1,13 +1,13 @@
 class ChannelsController < ApplicationController
   before_action :set_channel, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!  
   # GET /channels
   # GET /channels.json
   def index
     @channels = Channel.where(id: (Subscription.where(student_id: current_user.student.id).pluck(:channel_id)))
 
   end
-
+ 
   # GET /channels/1
   # GET /channels/1.json
   def show
@@ -72,6 +72,7 @@ class ChannelsController < ApplicationController
 
 
   end
+  
 
   private
     # Use callbacks to share common setup or constraints between actions.

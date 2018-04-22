@@ -1,14 +1,21 @@
 Rails.application.routes.draw do
-  get 'subscriptions/recover_soft_deleted_records'
 
+  get 'subscriptions/recover_soft_deleted_records'
+  
+  get 'students/filter' 
+  get 'subscriptions/recover_soft_deleted_records'
+  get 'channels/find_batch_students'
+  get 'batches/find_batch_students'
+  
   get 'subscriptions/destroy'
 
   resources :subscriptions
   resources :students
   resources :batches
-  devise_for :users
+  devise_for :users, :controllers => { :invitations => 'invitations' }
   resources :channels
   resources :messages
+  resources :accountmanagement
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

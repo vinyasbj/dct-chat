@@ -66,6 +66,9 @@ GEM
       responders
       warden (~> 1.2.3)
     devise-bootstrap-views (0.0.11)
+    devise_invitable (1.7.2)
+      actionmailer (>= 4.1.0)
+      devise (>= 4.0.0)
     em-http-request (1.1.5)
       addressable (>= 2.3.4)
       cookiejar (!= 0.3.1)
@@ -121,6 +124,8 @@ GEM
       method_source (~> 0.8.1)
       slop (~> 3.4)
     public_suffix (2.0.5)
+    rabl (0.13.1)
+      activesupport (>= 2.3.14)
     rack (1.6.8)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -208,10 +213,12 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   devise
   devise-bootstrap-views
+  devise_invitable
   jbuilder (~> 2.0)
   jquery-rails
   private_pub
   pry
+  rabl
   rails (= 4.2.6)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
@@ -223,4 +230,4 @@ DEPENDENCIES
   web-console (~> 2.0)
 
 BUNDLED WITH
-   1.15.1
+   1.15.3

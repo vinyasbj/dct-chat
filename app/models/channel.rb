@@ -1,4 +1,5 @@
 class Channel < ActiveRecord::Base
+	# acts_as_paranoid 
 	has_many :messages
 	belongs_to :batch
 	has_many :subscriptions
@@ -8,7 +9,18 @@ class Channel < ActiveRecord::Base
 	validates_numericality_of :batch_id
 
 	def remaining_students
+
 		remaining_students = self.batch.students.pluck(:id) - self.subscriptions.pluck(:student_id)
+
+		remaining_students = self.batch.students.pluck(:id) - self.subscriptions.with_deleted.pluck(:student_id)
+		# binding.pry
+		Student.where(id: remaining_students)
+	end
+
+	def unsubscribed_students
+		remaining_students = Subscription.only_deleted.where('channel_id = ?', self.id).pluck(:student_id)
+
+
 		Student.where(id: remaining_students)
 	end
 end

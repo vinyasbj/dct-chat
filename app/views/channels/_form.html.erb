@@ -1,4 +1,4 @@
-<%= form_for(@channel) do |f| %>
+<%= form_for(@channel , remote: true) do |f| %>
   <% if @channel.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@channel.errors.count, "error") %> prohibited this channel from being saved:</h2>
@@ -20,10 +20,83 @@
     <%= f.collection_select :batch_id,Batch.all , :id,:name, promt: "Select a Batch" %>
   </div>
   <div class="field">
+
     <%= f.label :student %><br>
    <%=f.collection_check_boxes(:student_ids,Student.all, :id,:name) %><br>
   </div>  
+
+    <%#= f.label :student %><br>
+    <%#= f.collection_check_boxes(:student_ids,Student.all, :id,:name) %><br>
+  </div>
+  <label > Select All</label> 
+  <%= check_box_tag("Select All",value = "1" ,checked = false, option ={}) %>
+  <div id="checkbox" >
+    
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+<script type="text/javascript">
+  //batch students
+
+  var batchHandle = document.getElementById('channel_batch_id');
+ 
+  var checkboxHandle = document.getElementById('checkbox');
+  var selectAllHandle = document.getElementById('Select_All');
+
+    var studentHandle = document.getElementById('channel_student_ids_<%= %>');
+  
+  var output = [];
+  batchHandle.onchange = function(){
+    // studentHandle.innerHTML = "";
+    var output1 = "";
+  
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET','/batches/find_batch_students?batch_id=' + batchHandle.value);
+    // console.log(batchHandle.value);
+    xhr.onreadystatechange = function(){
+      if(xhr.readyState == 4 && xhr.status == 200){
+        var response = JSON.parse(xhr.responseText);
+        response.forEach(function(student){
+          // var node = document.createElement("input");
+          // node.type = "checkbox";
+          // node.value = student.id;
+          // node.id = "channel_student_ids_" + student.id;
+          // var label = document.createElement("label");
+          // label.for = "channel_student_ids_" + student.id;
+          // var text = document.createTextNode(student.name);
+          // label.appendChild(text);
+          // console.log(student.id);
+          //var append = "";
+          // output += "<option value=" + student.id + ">" + student.name + "</option>";
+          // name += "<label for=channel_student_ids_"+ student.id + ">" + student.name + "</label>";
+          output1 += "<input type=checkbox value=" + student.id + " id=channel_student_ids_" +student.id + " name=channel[student_ids]"+"["+"]" + ">" + "<label for=channel_student_ids_"+ student.id + ">" + student.name + "</label>";
+          // checkboxHandle.appendChild(label);
+          output.push("channel_student_ids_"+student.id);
+        });
+        checkboxHandle.innerHTML = output1 ;
+        // studentHandle.innerHTML = output ;
+        console.log(output);
+      }
+    }
+    xhr.send();
+  };
+  selectAllHandle.onclick = function(){
+      output.forEach(function(out){    
+      if (selectAllHandle.checked == true ){
+          var stuh = document.getElementById(out);
+          stuh.checked = true; 
+      }
+    })
+      output.forEach(function(out){
+        if (selectAllHandle.checked == false ){
+          var stuh = document.getElementById(out);
+          stuh.checked = false;
+
+      }
+    })
+  };
+
+</script>
