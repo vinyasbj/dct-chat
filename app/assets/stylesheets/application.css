@@ -27,7 +27,11 @@
     width:900px;
     border:1px solid #ACD8F0;
 <<<<<<< HEAD
+<<<<<<< HEAD
     overflow:auto; 
+=======
+    overflow:auto;
+>>>>>>> 9b63936d9c7bcf93be0d88f9a7820fa5c2e9592e
 =======
     overflow:auto;
 >>>>>>> 9b63936d9c7bcf93be0d88f9a7820fa5c2e9592e
@@ -44,26 +48,8 @@
 ..blue { background: blue }
 .grey { background: grey }
 
-/*
-=======
 
->>>>>>> 9b63936d9c7bcf93be0d88f9a7820fa5c2e9592e
-.list-group-item {
-    border: none;
-    border-top: 1px solid #ddd;
-    border-bottom: 1px solid #ddd;
-<<<<<<< HEAD
-    
-=======
 
->>>>>>> 9b63936d9c7bcf93be0d88f9a7820fa5c2e9592e
-}
-.list-group-item:first-child {
-    border-top: none;
-    border-top-left-radius: 0px;
-    border-top-right-radius: 0px;
-<<<<<<< HEAD
-}*/
 
 
 .current-chat { 
@@ -78,13 +64,13 @@
     overflow:auto;*/ 
     height: 100vh; 
 
+
 }
 
 
 .current-chat {
 
     height: 90vh;
-
     border: 1px solid #ddd;
 }
 
@@ -104,7 +90,7 @@
     height: 85vh;
     padding:10px;
     background:#fff;
-<<<<<<< HEAD
+
     height:300px;
     width:1011px;
     border:1px solid #ACD8F0;
@@ -120,14 +106,7 @@
 }
 */
 
-    height:200px;
-    margin: auto;
-    width:1011px;
-    border:1px solid #ACD8F0;
-    overflow:auto;
-    height: 100vh;
-    border: 1px solid #ddd;
-}
+
 
 .current-chat-footer {
     position: absolute;

@@ -12,8 +12,11 @@
 # It's strongly recommended that you check this file into your version control system.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20170719083520) do
 =======
+=======
+>>>>>>> 9b63936d9c7bcf93be0d88f9a7820fa5c2e9592e
 ActiveRecord::Schema.define(version: 20170806133515) do
 
   create_table "batch_students", force: :cascade do |t|
@@ -22,6 +25,9 @@ ActiveRecord::Schema.define(version: 20170806133515) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+<<<<<<< HEAD
+>>>>>>> 9b63936d9c7bcf93be0d88f9a7820fa5c2e9592e
+=======
 >>>>>>> 9b63936d9c7bcf93be0d88f9a7820fa5c2e9592e
 
   create_table "batches", force: :cascade do |t|
