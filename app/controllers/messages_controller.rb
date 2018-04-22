@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
-	# before_action :check_is_admin , except: [:index , :show, :create]
-
+	
+	
 	def index
 		@messages = Message.all
 	end
@@ -10,9 +10,13 @@ class MessagesController < ApplicationController
 		#@message = Message.new(message_params)
 		#@message = current_user.messages.build(message_params)
 		@message.user_id = current_user.id
-		@message.save
+	
+		msg = @message.block_messages(@message.content)
+		if msg =="valid"
+			@message.save
+		end
 	end
-	# private
+	# privatee
 	# def message_params
  #    	params.require(:message).permit(:content,:user_id,:channel_id)
  #  	end

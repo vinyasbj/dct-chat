@@ -1,39 +1,87 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="row chats-row">
+        <div class="col-md-12">
+          <div class="list-group-item open-request">
+              <strong><p>Name:<%= @channel.name %></p></strong>
+              <p>Batch: <%= @channel.batch_id %></p>
+          </div>
+          <div class="list-group-item chat-request">
+             <strong>People on the channel:</strong>
+                <%= form_for(@channel) do |f| %>
+                  <%= f.collection_check_boxes :student_ids,@channel.subscriptions,:id,:student_name do |f| %>
+                      <%= link_to 'Unsubscribe', f.object, method: :delete, data: { confirm: 'Are you sure?' } %>
+                      <%= f.check_box %>
+                      <%  %>
+                      <%= f.label %><br/>
+                    <% end %>
+                <% end %>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="list-group-item">
+            <strong>Remaining People of the Batch for this Channel:</strong><br>
+              <%= form_for(@channel) do |f| %>
+              <%#binding.pry %>
+                <%= f.collection_check_boxes :student_ids, @channel.remaining_students, :id, :name do |f| %>
+                  <%= link_to 'subscribe' , subscriptions_recover_soft_deleted_records_path()%>
+                    <%= f.check_box %>
+                    <%= f.label %><br/>
+                <% end %>
+              <% end -%>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="list-group-item">
+            <strong>Soft deleted People of the Batch for this Channel:</strong>
+              <%= form_for(@channel) do |f| %>
+              <%#binding.pry %>
+                
+                <%= f.collection_check_boxes :student_ids, @channel.remaining_students, :id, :name do |f| %>
+                  <%= link_to 'subscribe' , method: :update%>
+                    <%= f.check_box %>
+                    <%= f.label %><br/>
+                  
+                <% end %>
+              <% end -%>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-9 current-chat">
+      <div class="row current-chat-area">
+        <div class="col-md-12">
+          <ul class="media-list">
+            <li class="media">
+              <div class="media-body">
+                <%= render @channel.messages %>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="row current-chat-footer">
+        <div class="panel-footer">
+          <div class="input-group">
+            <%=form_for Message.new ,remote: true do |f| %>
+              <%= f.hidden_field :channel_id , value: @channel.id %>
+              <%= f.text_field :content, class:"form-control send-form" %>
+                <span class="input-group-btn">
+                  <%= f.submit "send", class:"btn btn-default send-chart" %>
+                  <!--   <button class="btn btn-default" type="button">Send</button> -->
+                </span>
+             <% end %>
+           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @channel.name %>
-</p>
-
-<p>
-  <strong>Batch:</strong>
-  <%= @channel.batch_id %>
-</p>
-<p>
-  <strong>People on thi channel:</strong>
-  <% @channel.subscriptions.each do |subscription| %>
-
-    <%=subscription.student.user.name %>
-
-  <% end %>
-</p>
-<!-- <h2>Chat Application</h2> -->
-
- <ul id = "chat">
- 	<%= render @channel.messages.reverse %>
- </ul>
-
- <div id= "chatbox">
- 	<%=form_for Message.new ,remote: true do |f| %>
- 	<%= f.text_field :content,autofocus: :true %>
- 	<%= f.hidden_field :channel_id , value: @channel.id %>
- 	<%= f.submit "send"    %>
- 	<% end %>
- </div>
 
 <%= subscribe_to "/#{@channel.name}/new" %>
 <% if user_signed_in? && current_user.is_admin %>
-	<%= link_to 'Edit', edit_channel_path(@channel) %>
-	<% end -%>
-|<%= link_to 'Back', channels_path %>
+  <%= link_to 'Edit', edit_channel_path(@channel),class:"btn btn-default " %>
+<%end -%>
+<%= link_to 'Back', channels_path ,class:"btn btn-default "%>

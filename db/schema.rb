@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170712122736) do
+ActiveRecord::Schema.define(version: 20170719083520) do
 
   create_table "batches", force: :cascade do |t|
     t.string   "name"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20170712122736) do
     t.string   "mobile"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "batch_id"
   end
 
   create_table "subscriptions", force: :cascade do |t|
@@ -48,6 +49,7 @@ ActiveRecord::Schema.define(version: 20170712122736) do
     t.boolean  "subscribed"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean  "deleted_at"
   end
 
   create_table "users", force: :cascade do |t|

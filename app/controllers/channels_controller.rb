@@ -4,7 +4,6 @@ class ChannelsController < ApplicationController
   # GET /channels
   # GET /channels.json
   def index
-    #subscriptions = Subscription.where('student_id=?',current_user.student_id)
     @channels = Channel.where(id: (Subscription.where(student_id: current_user.student.id).pluck(:channel_id)))
 
   end
@@ -12,8 +11,9 @@ class ChannelsController < ApplicationController
   # GET /channels/1
   # GET /channels/1.json
   def show
-
-    @channel = Channel.find(params[:id])
+    
+    @channel = Channel.find(params[:id])  
+    # NOT IN (Subscription.find_by(@channel).pluck(:student_id))
     @messages = @channel.messages
 
   end
@@ -50,7 +50,7 @@ class ChannelsController < ApplicationController
   def update
     respond_to do |format|
       if @channel.update(channel_params)
-        format.html { redirect_to @channel, notice: 'Channel was successfully updated.' }
+          format.html { redirect_to @channel, notice: 'Channel was successfully updated.' }
         format.json { render :show, status: :ok, location: @channel }
       else
         format.html { render :edit }
@@ -62,11 +62,15 @@ class ChannelsController < ApplicationController
   # DELETE /channels/1
   # DELETE /channels/1.json
   def destroy
+
     @channel.destroy
     respond_to do |format|
       format.html { redirect_to channels_url, notice: 'Channel was successfully destroyed.' }
       format.json { head :no_content }
     end
+
+
+
   end
 
   private

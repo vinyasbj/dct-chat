@@ -22,7 +22,7 @@
   <div class="field">
     <%= f.label :student %><br>
    <%=f.collection_check_boxes(:student_ids,Student.all, :id,:name) %><br>
-  </div>
+  </div>  
   <div class="actions">
     <%= f.submit %>
   </div>

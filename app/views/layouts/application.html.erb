@@ -1,4 +1,4 @@
-cd<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
   <title>Chat</title>
@@ -58,7 +58,7 @@ cd<!DOCTYPE html>
        <% if user_signed_in? %>
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav navbar-right">
-            <li><%=link_to "Batches" , batches_path %></li>
+            <li><%#=link_to "Batches" , batches_path %></li>
             <li><%=link_to "Channels" , channels_path%></li>
             <li><%=link_to "Students" , students_path%></li>
             <li><%= link_to "Account Setting" , edit_user_registration_path %></li>
@@ -75,12 +75,16 @@ cd<!DOCTYPE html>
 </nav>
 <% if user_signed_in? %>
   <div class="welcome">
-       Welcome <%= current_user.email %>
-       </div>
+       Welcome <%= current_user.name %>
+  </div>
+
 <% end -%>
+
+</div>
+    <%= yield %>
         <%= notice %>
         <%= alert %>
-  <%= yield %>
+
 
 </body>
 </html>
